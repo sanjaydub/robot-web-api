@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.1 (Python 3.7.3 on win32)" generated="20191010 07:09:51.100" rpa="false">
+<suite id="s1" name="TestSuite1" source="C:\Users\sanjay\IdeaProjects\RFW_Proj1\Suites\TestSuite1.robot">
+<test id="s1-t1" name="Request Git hub via REST service">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>github</arg>
+<arg>https://api.github.com</arg>
+</arguments>
+<msg timestamp="20191010 07:09:51.725" level="INFO">Creating Session using : alias=github, url=https://api.github.com, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20191010 07:09:51.725" endtime="20191010 07:09:51.725"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>github</arg>
+<arg>/users/sanjaydub</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20191010 07:09:52.263" level="INFO">Get Request using : alias=github, uri=/users/sanjaydub, headers=None json=None</msg>
+<msg timestamp="20191010 07:09:52.263" level="INFO">C:\Users\sanjay\AppData\Local\Programs\Python\Python37-32\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,</msg>
+<msg timestamp="20191010 07:09:52.263" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20191010 07:09:51.725" endtime="20191010 07:09:52.263"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp)</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.263" level="INFO">${resp)</msg>
+<status status="PASS" starttime="20191010 07:09:52.263" endtime="20191010 07:09:52.263"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.263" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20191010 07:09:52.263" endtime="20191010 07:09:52.263"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+</arguments>
+<assign>
+<var>${respText}</var>
+</assign>
+<msg timestamp="20191010 07:09:52.263" level="INFO">${respText} = {"login":"sanjaydub","id":3491311,"node_id":"MDQ6VXNlcjM0OTEzMTE=","avatar_url":"https://avatars1.githubusercontent.com/u/3491311?v=4","gravatar_id":"","url":"https://api.github.com/users/sanjaydub","...</msg>
+<status status="PASS" starttime="20191010 07:09:52.263" endtime="20191010 07:09:52.263"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${respText}</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.263" level="INFO">{"login":"sanjaydub","id":3491311,"node_id":"MDQ6VXNlcjM0OTEzMTE=","avatar_url":"https://avatars1.githubusercontent.com/u/3491311?v=4","gravatar_id":"","url":"https://api.github.com/users/sanjaydub","html_url":"https://github.com/sanjaydub","followers_url":"https://api.github.com/users/sanjaydub/followers","following_url":"https://api.github.com/users/sanjaydub/following{/other_user}","gists_url":"https://api.github.com/users/sanjaydub/gists{/gist_id}","starred_url":"https://api.github.com/users/sanjaydub/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sanjaydub/subscriptions","organizations_url":"https://api.github.com/users/sanjaydub/orgs","repos_url":"https://api.github.com/users/sanjaydub/repos","events_url":"https://api.github.com/users/sanjaydub/events{/privacy}","received_events_url":"https://api.github.com/users/sanjaydub/received_events","type":"User","site_admin":false,"name":null,"company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"public_repos":3,"public_gists":0,"followers":0,"following":2,"created_at":"2013-02-06T12:09:01Z","updated_at":"2019-09-11T17:15:32Z"}</msg>
+<status status="PASS" starttime="20191010 07:09:52.263" endtime="20191010 07:09:52.263"></status>
+</kw>
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${resp.json()}</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.274" level="INFO">Dictionary size is 31 and it contains following items:
+avatar_url: https://avatars1.githubusercontent.com/u/3491311?v=4
+bio: None
+blog: 
+company: None
+created_at: 2013-02-06T12:09:01Z
+email: None
+events_url: https://api.github.com/users/sanjaydub/events{/privacy}
+followers: 0
+followers_url: https://api.github.com/users/sanjaydub/followers
+following: 2
+following_url: https://api.github.com/users/sanjaydub/following{/other_user}
+gists_url: https://api.github.com/users/sanjaydub/gists{/gist_id}
+gravatar_id: 
+hireable: None
+html_url: https://github.com/sanjaydub
+id: 3491311
+location: None
+login: sanjaydub
+name: None
+node_id: MDQ6VXNlcjM0OTEzMTE=
+organizations_url: https://api.github.com/users/sanjaydub/orgs
+public_gists: 0
+public_repos: 3
+received_events_url: https://api.github.com/users/sanjaydub/received_events
+repos_url: https://api.github.com/users/sanjaydub/repos
+site_admin: False
+starred_url: https://api.github.com/users/sanjaydub/starred{/owner}{/repo}
+subscriptions_url: https://api.github.com/users/sanjaydub/subscriptions
+type: User
+updated_at: 2019-09-11T17:15:32Z
+url: https://api.github.com/users/sanjaydub</msg>
+<status status="PASS" starttime="20191010 07:09:52.263" endtime="20191010 07:09:52.274"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>github</arg>
+<arg>/users/sanjaydub/repos</arg>
+</arguments>
+<assign>
+<var>${getRepos}</var>
+</assign>
+<msg timestamp="20191010 07:09:52.657" level="INFO">Get Request using : alias=github, uri=/users/sanjaydub/repos, headers=None json=None</msg>
+<msg timestamp="20191010 07:09:52.657" level="INFO">C:\Users\sanjay\AppData\Local\Programs\Python\Python37-32\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,</msg>
+<msg timestamp="20191010 07:09:52.673" level="INFO">${getRepos} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20191010 07:09:52.275" endtime="20191010 07:09:52.673"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${getRepos.json()}</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.673" level="INFO">[{'id': 210031706, 'node_id': 'MDEwOlJlcG9zaXRvcnkyMTAwMzE3MDY=', 'name': 'Allure_Maven_TestNG', 'full_name': 'sanjaydub/Allure_Maven_TestNG', 'private': False, 'owner': {'login': 'sanjaydub', 'id': 3491311, 'node_id': 'MDQ6VXNlcjM0OTEzMTE=', 'avatar_url': 'https://avatars1.githubusercontent.com/u/3491311?v=4', 'gravatar_id': '', 'url': 'https://api.github.com/users/sanjaydub', 'html_url': 'https://github.com/sanjaydub', 'followers_url': 'https://api.github.com/users/sanjaydub/followers', 'following_url': 'https://api.github.com/users/sanjaydub/following{/other_user}', 'gists_url': 'https://api.github.com/users/sanjaydub/gists{/gist_id}', 'starred_url': 'https://api.github.com/users/sanjaydub/starred{/owner}{/repo}', 'subscriptions_url': 'https://api.github.com/users/sanjaydub/subscriptions', 'organizations_url': 'https://api.github.com/users/sanjaydub/orgs', 'repos_url': 'https://api.github.com/users/sanjaydub/repos', 'events_url': 'https://api.github.com/users/sanjaydub/events{/privacy}', 'received_events_url': 'https://api.github.com/users/sanjaydub/received_events', 'type': 'User', 'site_admin': False}, 'html_url': 'https://github.com/sanjaydub/Allure_Maven_TestNG', 'description': None, 'fork': False, 'url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG', 'forks_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/forks', 'keys_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/keys{/key_id}', 'collaborators_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/collaborators{/collaborator}', 'teams_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/teams', 'hooks_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/hooks', 'issue_events_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues/events{/number}', 'events_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/events', 'assignees_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/assignees{/user}', 'branches_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/branches{/branch}', 'tags_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/tags', 'blobs_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/blobs{/sha}', 'git_tags_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/tags{/sha}', 'git_refs_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/refs{/sha}', 'trees_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/trees{/sha}', 'statuses_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/statuses/{sha}', 'languages_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/languages', 'stargazers_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/stargazers', 'contributors_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/contributors', 'subscribers_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/subscribers', 'subscription_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/subscription', 'commits_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/commits{/sha}', 'git_commits_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/commits{/sha}', 'comments_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/comments{/number}', 'issue_comment_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues/comments{/number}', 'contents_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/contents/{+path}', 'compare_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/compare/{base}...{head}', 'merges_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/merges', 'archive_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/{archive_format}{/ref}', 'downloads_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/downloads', 'issues_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues{/number}', 'pulls_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/pulls{/number}', 'milestones_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/milestones{/number}', 'notifications_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/notifications{?since,all,participating}', 'labels_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/labels{/name}', 'releases_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/releases{/id}', 'deployments_url': 'https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/deployments', 'created_at': '2019-09-21T18:05:24Z', 'updated_at': '2019-09-21T19:06:26Z', 'pushed_at': '2019-09-21T18:55:33Z', 'git_url': 'git://github.com/sanjaydub/Allure_Maven_TestNG.git', 'ssh_url': 'git@github.com:sanjaydub/Allure_Maven_TestNG.git', 'clone_url': 'https://github.com/sanjaydub/Allure_Maven_TestNG.git', 'svn_url': 'https://github.com/sanjaydub/Allure_Maven_TestNG', 'homepage': None, 'size': 1023, 'stargazers_count': 0, 'watchers_count': 0, 'language': 'HTML', 'has_issues': True, 'has_projects': True, 'has_downloads': True, 'has_wiki': True, 'has_pages': False, 'forks_count': 0, 'mirror_url': None, 'archived': False, 'disabled': False, 'open_issues_count': 0, 'license': None, 'forks': 0, 'open_issues': 0, 'watchers': 0, 'default_branch': 'master'}, {'id': 45175770, 'node_id': 'MDEwOlJlcG9zaXRvcnk0NTE3NTc3MA==', 'name': 'firstrepo', 'full_name': 'sanjaydub/firstrepo', 'private': False, 'owner': {'login': 'sanjaydub', 'id': 3491311, 'node_id': 'MDQ6VXNlcjM0OTEzMTE=', 'avatar_url': 'https://avatars1.githubusercontent.com/u/3491311?v=4', 'gravatar_id': '', 'url': 'https://api.github.com/users/sanjaydub', 'html_url': 'https://github.com/sanjaydub', 'followers_url': 'https://api.github.com/users/sanjaydub/followers', 'following_url': 'https://api.github.com/users/sanjaydub/following{/other_user}', 'gists_url': 'https://api.github.com/users/sanjaydub/gists{/gist_id}', 'starred_url': 'https://api.github.com/users/sanjaydub/starred{/owner}{/repo}', 'subscriptions_url': 'https://api.github.com/users/sanjaydub/subscriptions', 'organizations_url': 'https://api.github.com/users/sanjaydub/orgs', 'repos_url': 'https://api.github.com/users/sanjaydub/repos', 'events_url': 'https://api.github.com/users/sanjaydub/events{/privacy}', 'received_events_url': 'https://api.github.com/users/sanjaydub/received_events', 'type': 'User', 'site_admin': False}, 'html_url': 'https://github.com/sanjaydub/firstrepo', 'description': 'RestJenkins', 'fork': False, 'url': 'https://api.github.com/repos/sanjaydub/firstrepo', 'forks_url': 'https://api.github.com/repos/sanjaydub/firstrepo/forks', 'keys_url': 'https://api.github.com/repos/sanjaydub/firstrepo/keys{/key_id}', 'collaborators_url': 'https://api.github.com/repos/sanjaydub/firstrepo/collaborators{/collaborator}', 'teams_url': 'https://api.github.com/repos/sanjaydub/firstrepo/teams', 'hooks_url': 'https://api.github.com/repos/sanjaydub/firstrepo/hooks', 'issue_events_url': 'https://api.github.com/repos/sanjaydub/firstrepo/issues/events{/number}', 'events_url': 'https://api.github.com/repos/sanjaydub/firstrepo/events', 'assignees_url': 'https://api.github.com/repos/sanjaydub/firstrepo/assignees{/user}', 'branches_url': 'https://api.github.com/repos/sanjaydub/firstrepo/branches{/branch}', 'tags_url': 'https://api.github.com/repos/sanjaydub/firstrepo/tags', 'blobs_url': 'https://api.github.com/repos/sanjaydub/firstrepo/git/blobs{/sha}', 'git_tags_url': 'https://api.github.com/repos/sanjaydub/firstrepo/git/tags{/sha}', 'git_refs_url': 'https://api.github.com/repos/sanjaydub/firstrepo/git/refs{/sha}', 'trees_url': 'https://api.github.com/repos/sanjaydub/firstrepo/git/trees{/sha}', 'statuses_url': 'https://api.github.com/repos/sanjaydub/firstrepo/statuses/{sha}', 'languages_url': 'https://api.github.com/repos/sanjaydub/firstrepo/languages', 'stargazers_url': 'https://api.github.com/repos/sanjaydub/firstrepo/stargazers', 'contributors_url': 'https://api.github.com/repos/sanjaydub/firstrepo/contributors', 'subscribers_url': 'https://api.github.com/repos/sanjaydub/firstrepo/subscribers', 'subscription_url': 'https://api.github.com/repos/sanjaydub/firstrepo/subscription', 'commits_url': 'https://api.github.com/repos/sanjaydub/firstrepo/commits{/sha}', 'git_commits_url': 'https://api.github.com/repos/sanjaydub/firstrepo/git/commits{/sha}', 'comments_url': 'https://api.github.com/repos/sanjaydub/firstrepo/comments{/number}', 'issue_comment_url': 'https://api.github.com/repos/sanjaydub/firstrepo/issues/comments{/number}', 'contents_url': 'https://api.github.com/repos/sanjaydub/firstrepo/contents/{+path}', 'compare_url': 'https://api.github.com/repos/sanjaydub/firstrepo/compare/{base}...{head}', 'merges_url': 'https://api.github.com/repos/sanjaydub/firstrepo/merges', 'archive_url': 'https://api.github.com/repos/sanjaydub/firstrepo/{archive_format}{/ref}', 'downloads_url': 'https://api.github.com/repos/sanjaydub/firstrepo/downloads', 'issues_url': 'https://api.github.com/repos/sanjaydub/firstrepo/issues{/number}', 'pulls_url': 'https://api.github.com/repos/sanjaydub/firstrepo/pulls{/number}', 'milestones_url': 'https://api.github.com/repos/sanjaydub/firstrepo/milestones{/number}', 'notifications_url': 'https://api.github.com/repos/sanjaydub/firstrepo/notifications{?since,all,participating}', 'labels_url': 'https://api.github.com/repos/sanjaydub/firstrepo/labels{/name}', 'releases_url': 'https://api.github.com/repos/sanjaydub/firstrepo/releases{/id}', 'deployments_url': 'https://api.github.com/repos/sanjaydub/firstrepo/deployments', 'created_at': '2015-10-29T10:18:55Z', 'updated_at': '2019-09-11T18:49:56Z', 'pushed_at': '2019-09-11T18:46:14Z', 'git_url': 'git://github.com/sanjaydub/firstrepo.git', 'ssh_url': 'git@github.com:sanjaydub/firstrepo.git', 'clone_url': 'https://github.com/sanjaydub/firstrepo.git', 'svn_url': 'https://github.com/sanjaydub/firstrepo', 'homepage': '', 'size': 14, 'stargazers_count': 0, 'watchers_count': 0, 'language': 'Java', 'has_issues': True, 'has_projects': True, 'has_downloads': True, 'has_wiki': True, 'has_pages': False, 'forks_count': 0, 'mirror_url': None, 'archived': False, 'disabled': False, 'open_issues_count': 0, 'license': None, 'forks': 0, 'open_issues': 0, 'watchers': 0, 'default_branch': 'master'}, {'id': 8056955, 'node_id': 'MDEwOlJlcG9zaXRvcnk4MDU2OTU1', 'name': 'robotframework-soapuilibrary', 'full_name': 'sanjaydub/robotframework-soapuilibrary', 'private': False, 'owner': {'login': 'sanjaydub', 'id': 3491311, 'node_id': 'MDQ6VXNlcjM0OTEzMTE=', 'avatar_url': 'https://avatars1.githubusercontent.com/u/3491311?v=4', 'gravatar_id': '', 'url': 'https://api.github.com/users/sanjaydub', 'html_url': 'https://github.com/sanjaydub', 'followers_url': 'https://api.github.com/users/sanjaydub/followers', 'following_url': 'https://api.github.com/users/sanjaydub/following{/other_user}', 'gists_url': 'https://api.github.com/users/sanjaydub/gists{/gist_id}', 'starred_url': 'https://api.github.com/users/sanjaydub/starred{/owner}{/repo}', 'subscriptions_url': 'https://api.github.com/users/sanjaydub/subscriptions', 'organizations_url': 'https://api.github.com/users/sanjaydub/orgs', 'repos_url': 'https://api.github.com/users/sanjaydub/repos', 'events_url': 'https://api.github.com/users/sanjaydub/events{/privacy}', 'received_events_url': 'https://api.github.com/users/sanjaydub/received_events', 'type': 'User', 'site_admin': False}, 'html_url': 'https://github.com/sanjaydub/robotframework-soapuilibrary', 'description': 'SoapUI test library for the Robot Framework', 'fork': True, 'url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary', 'forks_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/forks', 'keys_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/keys{/key_id}', 'collaborators_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/collaborators{/collaborator}', 'teams_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/teams', 'hooks_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/hooks', 'issue_events_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/issues/events{/number}', 'events_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/events', 'assignees_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/assignees{/user}', 'branches_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/branches{/branch}', 'tags_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/tags', 'blobs_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/blobs{/sha}', 'git_tags_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/tags{/sha}', 'git_refs_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/refs{/sha}', 'trees_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/trees{/sha}', 'statuses_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/statuses/{sha}', 'languages_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/languages', 'stargazers_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/stargazers', 'contributors_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/contributors', 'subscribers_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/subscribers', 'subscription_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/subscription', 'commits_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/commits{/sha}', 'git_commits_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/commits{/sha}', 'comments_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/comments{/number}', 'issue_comment_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/issues/comments{/number}', 'contents_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/contents/{+path}', 'compare_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/compare/{base}...{head}', 'merges_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/merges', 'archive_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/{archive_format}{/ref}', 'downloads_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/downloads', 'issues_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/issues{/number}', 'pulls_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/pulls{/number}', 'milestones_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/milestones{/number}', 'notifications_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/notifications{?since,all,participating}', 'labels_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/labels{/name}', 'releases_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/releases{/id}', 'deployments_url': 'https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/deployments', 'created_at': '2013-02-06T18:13:59Z', 'updated_at': '2019-07-27T12:12:28Z', 'pushed_at': '2019-07-27T12:12:26Z', 'git_url': 'git://github.com/sanjaydub/robotframework-soapuilibrary.git', 'ssh_url': 'git@github.com:sanjaydub/robotframework-soapuilibrary.git', 'clone_url': 'https://github.com/sanjaydub/robotframework-soapuilibrary.git', 'svn_url': 'https://github.com/sanjaydub/robotframework-soapuilibrary', 'homepage': '', 'size': 19, 'stargazers_count': 0, 'watchers_count': 0, 'language': 'Python', 'has_issues': False, 'has_projects': True, 'has_downloads': True, 'has_wiki': True, 'has_pages': False, 'forks_count': 0, 'mirror_url': None, 'archived': False, 'disabled': False, 'open_issues_count': 0, 'license': {'key': 'apache-2.0', 'name': 'Apache License 2.0', 'spdx_id': 'Apache-2.0', 'url': 'https://api.github.com/licenses/apache-2.0', 'node_id': 'MDc6TGljZW5zZTI='}, 'forks': 0, 'open_issues': 0, 'watchers': 0, 'default_branch': 'master'}]</msg>
+<status status="PASS" starttime="20191010 07:09:52.673" endtime="20191010 07:09:52.673"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${getRepos.text}</arg>
+</arguments>
+<assign>
+<var>${resDict}</var>
+</assign>
+<msg timestamp="20191010 07:09:52.673" level="INFO">To JSON using : content=[{"id":210031706,"node_id":"MDEwOlJlcG9zaXRvcnkyMTAwMzE3MDY=","name":"Allure_Maven_TestNG","full_name":"sanjaydub/Allure_Maven_TestNG","private":false,"owner":{"login":"sanjaydub","id":3491311,"node_id":"MDQ6VXNlcjM0OTEzMTE=","avatar_url":"https://avatars1.githubusercontent.com/u/3491311?v=4","gravatar_id":"","url":"https://api.github.com/users/sanjaydub","html_url":"https://github.com/sanjaydub","followers_url":"https://api.github.com/users/sanjaydub/followers","following_url":"https://api.github.com/users/sanjaydub/following{/other_user}","gists_url":"https://api.github.com/users/sanjaydub/gists{/gist_id}","starred_url":"https://api.github.com/users/sanjaydub/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sanjaydub/subscriptions","organizations_url":"https://api.github.com/users/sanjaydub/orgs","repos_url":"https://api.github.com/users/sanjaydub/repos","events_url":"https://api.github.com/users/sanjaydub/events{/privacy}","received_events_url":"https://api.github.com/users/sanjaydub/received_events","type":"User","site_admin":false},"html_url":"https://github.com/sanjaydub/Allure_Maven_TestNG","description":null,"fork":false,"url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG","forks_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/forks","keys_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/keys{/key_id}","collaborators_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/teams","hooks_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/hooks","issue_events_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues/events{/number}","events_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/events","assignees_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/assignees{/user}","branches_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/branches{/branch}","tags_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/tags","blobs_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/refs{/sha}","trees_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/trees{/sha}","statuses_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/statuses/{sha}","languages_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/languages","stargazers_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/stargazers","contributors_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/contributors","subscribers_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/subscribers","subscription_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/subscription","commits_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/commits{/sha}","git_commits_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/commits{/sha}","comments_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/comments{/number}","issue_comment_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues/comments{/number}","contents_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/contents/{+path}","compare_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/compare/{base}...{head}","merges_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/merges","archive_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/downloads","issues_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues{/number}","pulls_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/pulls{/number}","milestones_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/milestones{/number}","notifications_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/labels{/name}","releases_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/releases{/id}","deployments_url":"https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/deployments","created_at":"2019-09-21T18:05:24Z","updated_at":"2019-09-21T19:06:26Z","pushed_at":"2019-09-21T18:55:33Z","git_url":"git://github.com/sanjaydub/Allure_Maven_TestNG.git","ssh_url":"git@github.com:sanjaydub/Allure_Maven_TestNG.git","clone_url":"https://github.com/sanjaydub/Allure_Maven_TestNG.git","svn_url":"https://github.com/sanjaydub/Allure_Maven_TestNG","homepage":null,"size":1023,"stargazers_count":0,"watchers_count":0,"language":"HTML","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":0,"license":null,"forks":0,"open_issues":0,"watchers":0,"default_branch":"master"},{"id":45175770,"node_id":"MDEwOlJlcG9zaXRvcnk0NTE3NTc3MA==","name":"firstrepo","full_name":"sanjaydub/firstrepo","private":false,"owner":{"login":"sanjaydub","id":3491311,"node_id":"MDQ6VXNlcjM0OTEzMTE=","avatar_url":"https://avatars1.githubusercontent.com/u/3491311?v=4","gravatar_id":"","url":"https://api.github.com/users/sanjaydub","html_url":"https://github.com/sanjaydub","followers_url":"https://api.github.com/users/sanjaydub/followers","following_url":"https://api.github.com/users/sanjaydub/following{/other_user}","gists_url":"https://api.github.com/users/sanjaydub/gists{/gist_id}","starred_url":"https://api.github.com/users/sanjaydub/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sanjaydub/subscriptions","organizations_url":"https://api.github.com/users/sanjaydub/orgs","repos_url":"https://api.github.com/users/sanjaydub/repos","events_url":"https://api.github.com/users/sanjaydub/events{/privacy}","received_events_url":"https://api.github.com/users/sanjaydub/received_events","type":"User","site_admin":false},"html_url":"https://github.com/sanjaydub/firstrepo","description":"RestJenkins","fork":false,"url":"https://api.github.com/repos/sanjaydub/firstrepo","forks_url":"https://api.github.com/repos/sanjaydub/firstrepo/forks","keys_url":"https://api.github.com/repos/sanjaydub/firstrepo/keys{/key_id}","collaborators_url":"https://api.github.com/repos/sanjaydub/firstrepo/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/sanjaydub/firstrepo/teams","hooks_url":"https://api.github.com/repos/sanjaydub/firstrepo/hooks","issue_events_url":"https://api.github.com/repos/sanjaydub/firstrepo/issues/events{/number}","events_url":"https://api.github.com/repos/sanjaydub/firstrepo/events","assignees_url":"https://api.github.com/repos/sanjaydub/firstrepo/assignees{/user}","branches_url":"https://api.github.com/repos/sanjaydub/firstrepo/branches{/branch}","tags_url":"https://api.github.com/repos/sanjaydub/firstrepo/tags","blobs_url":"https://api.github.com/repos/sanjaydub/firstrepo/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/sanjaydub/firstrepo/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/sanjaydub/firstrepo/git/refs{/sha}","trees_url":"https://api.github.com/repos/sanjaydub/firstrepo/git/trees{/sha}","statuses_url":"https://api.github.com/repos/sanjaydub/firstrepo/statuses/{sha}","languages_url":"https://api.github.com/repos/sanjaydub/firstrepo/languages","stargazers_url":"https://api.github.com/repos/sanjaydub/firstrepo/stargazers","contributors_url":"https://api.github.com/repos/sanjaydub/firstrepo/contributors","subscribers_url":"https://api.github.com/repos/sanjaydub/firstrepo/subscribers","subscription_url":"https://api.github.com/repos/sanjaydub/firstrepo/subscription","commits_url":"https://api.github.com/repos/sanjaydub/firstrepo/commits{/sha}","git_commits_url":"https://api.github.com/repos/sanjaydub/firstrepo/git/commits{/sha}","comments_url":"https://api.github.com/repos/sanjaydub/firstrepo/comments{/number}","issue_comment_url":"https://api.github.com/repos/sanjaydub/firstrepo/issues/comments{/number}","contents_url":"https://api.github.com/repos/sanjaydub/firstrepo/contents/{+path}","compare_url":"https://api.github.com/repos/sanjaydub/firstrepo/compare/{base}...{head}","merges_url":"https://api.github.com/repos/sanjaydub/firstrepo/merges","archive_url":"https://api.github.com/repos/sanjaydub/firstrepo/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/sanjaydub/firstrepo/downloads","issues_url":"https://api.github.com/repos/sanjaydub/firstrepo/issues{/number}","pulls_url":"https://api.github.com/repos/sanjaydub/firstrepo/pulls{/number}","milestones_url":"https://api.github.com/repos/sanjaydub/firstrepo/milestones{/number}","notifications_url":"https://api.github.com/repos/sanjaydub/firstrepo/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/sanjaydub/firstrepo/labels{/name}","releases_url":"https://api.github.com/repos/sanjaydub/firstrepo/releases{/id}","deployments_url":"https://api.github.com/repos/sanjaydub/firstrepo/deployments","created_at":"2015-10-29T10:18:55Z","updated_at":"2019-09-11T18:49:56Z","pushed_at":"2019-09-11T18:46:14Z","git_url":"git://github.com/sanjaydub/firstrepo.git","ssh_url":"git@github.com:sanjaydub/firstrepo.git","clone_url":"https://github.com/sanjaydub/firstrepo.git","svn_url":"https://github.com/sanjaydub/firstrepo","homepage":"","size":14,"stargazers_count":0,"watchers_count":0,"language":"Java","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":0,"license":null,"forks":0,"open_issues":0,"watchers":0,"default_branch":"master"},{"id":8056955,"node_id":"MDEwOlJlcG9zaXRvcnk4MDU2OTU1","name":"robotframework-soapuilibrary","full_name":"sanjaydub/robotframework-soapuilibrary","private":false,"owner":{"login":"sanjaydub","id":3491311,"node_id":"MDQ6VXNlcjM0OTEzMTE=","avatar_url":"https://avatars1.githubusercontent.com/u/3491311?v=4","gravatar_id":"","url":"https://api.github.com/users/sanjaydub","html_url":"https://github.com/sanjaydub","followers_url":"https://api.github.com/users/sanjaydub/followers","following_url":"https://api.github.com/users/sanjaydub/following{/other_user}","gists_url":"https://api.github.com/users/sanjaydub/gists{/gist_id}","starred_url":"https://api.github.com/users/sanjaydub/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sanjaydub/subscriptions","organizations_url":"https://api.github.com/users/sanjaydub/orgs","repos_url":"https://api.github.com/users/sanjaydub/repos","events_url":"https://api.github.com/users/sanjaydub/events{/privacy}","received_events_url":"https://api.github.com/users/sanjaydub/received_events","type":"User","site_admin":false},"html_url":"https://github.com/sanjaydub/robotframework-soapuilibrary","description":"SoapUI test library for the Robot Framework","fork":true,"url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary","forks_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/forks","keys_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/keys{/key_id}","collaborators_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/teams","hooks_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/hooks","issue_events_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/issues/events{/number}","events_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/events","assignees_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/assignees{/user}","branches_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/branches{/branch}","tags_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/tags","blobs_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/refs{/sha}","trees_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/trees{/sha}","statuses_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/statuses/{sha}","languages_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/languages","stargazers_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/stargazers","contributors_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/contributors","subscribers_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/subscribers","subscription_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/subscription","commits_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/commits{/sha}","git_commits_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/git/commits{/sha}","comments_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/comments{/number}","issue_comment_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/issues/comments{/number}","contents_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/contents/{+path}","compare_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/compare/{base}...{head}","merges_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/merges","archive_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/downloads","issues_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/issues{/number}","pulls_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/pulls{/number}","milestones_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/milestones{/number}","notifications_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/labels{/name}","releases_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/releases{/id}","deployments_url":"https://api.github.com/repos/sanjaydub/robotframework-soapuilibrary/deployments","created_at":"2013-02-06T18:13:59Z","updated_at":"2019-07-27T12:12:28Z","pushed_at":"2019-07-27T12:12:26Z","git_url":"git://github.com/sanjaydub/robotframework-soapuilibrary.git","ssh_url":"git@github.com:sanjaydub/robotframework-soapuilibrary.git","clone_url":"https://github.com/sanjaydub/robotframework-soapuilibrary.git","svn_url":"https://github.com/sanjaydub/robotframework-soapuilibrary","homepage":"","size":19,"stargazers_count":0,"watchers_count":0,"language":"Python","has_issues":false,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":0,"license":{"key":"apache-2.0","name":"Apache License 2.0","spdx_id":"Apache-2.0","url":"https://api.github.com/licenses/apache-2.0","node_id":"MDc6TGljZW5zZTI="},"forks":0,"open_issues":0,"watchers":0,"default_branch":"master"}] </msg>
+<msg timestamp="20191010 07:09:52.673" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20191010 07:09:52.673" level="INFO">${resDict} = [{'id': 210031706, 'node_id': 'MDEwOlJlcG9zaXRvcnkyMTAwMzE3MDY=', 'name': 'Allure_Maven_TestNG', 'full_name': 'sanjaydub/Allure_Maven_TestNG', 'private': False, 'owner': {'login': 'sanjaydub', 'id': 3...</msg>
+<status status="PASS" starttime="20191010 07:09:52.673" endtime="20191010 07:09:52.673"></status>
+</kw>
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${resDict[0]}</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.673" level="INFO">Dictionary size is 73 and it contains following items:
+archive_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/{archive_format}{/ref}
+archived: False
+assignees_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/assignees{/user}
+blobs_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/blobs{/sha}
+branches_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/branches{/branch}
+clone_url: https://github.com/sanjaydub/Allure_Maven_TestNG.git
+collaborators_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/collaborators{/collaborator}
+comments_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/comments{/number}
+commits_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/commits{/sha}
+compare_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/compare/{base}...{head}
+contents_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/contents/{+path}
+contributors_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/contributors
+created_at: 2019-09-21T18:05:24Z
+default_branch: master
+deployments_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/deployments
+description: None
+disabled: False
+downloads_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/downloads
+events_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/events
+fork: False
+forks: 0
+forks_count: 0
+forks_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/forks
+full_name: sanjaydub/Allure_Maven_TestNG
+git_commits_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/commits{/sha}
+git_refs_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/refs{/sha}
+git_tags_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/tags{/sha}
+git_url: git://github.com/sanjaydub/Allure_Maven_TestNG.git
+has_downloads: True
+has_issues: True
+has_pages: False
+has_projects: True
+has_wiki: True
+homepage: None
+hooks_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/hooks
+html_url: https://github.com/sanjaydub/Allure_Maven_TestNG
+id: 210031706
+issue_comment_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues/comments{/number}
+issue_events_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues/events{/number}
+issues_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/issues{/number}
+keys_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/keys{/key_id}
+labels_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/labels{/name}
+language: HTML
+languages_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/languages
+license: None
+merges_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/merges
+milestones_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/milestones{/number}
+mirror_url: None
+name: Allure_Maven_TestNG
+node_id: MDEwOlJlcG9zaXRvcnkyMTAwMzE3MDY=
+notifications_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/notifications{?since,all,participating}
+open_issues: 0
+open_issues_count: 0
+owner: {'login': 'sanjaydub', 'id': 3491311, 'node_id': 'MDQ6VXNlcjM0OTEzMTE=', 'avatar_url': 'https://avatars1.githubusercontent.com/u/3491311?v=4', 'gravatar_id': '', 'url': 'https://api.github.com/users/sanjaydub', 'html_url': 'https://github.com/sanjaydub', 'followers_url': 'https://api.github.com/users/sanjaydub/followers', 'following_url': 'https://api.github.com/users/sanjaydub/following{/other_user}', 'gists_url': 'https://api.github.com/users/sanjaydub/gists{/gist_id}', 'starred_url': 'https://api.github.com/users/sanjaydub/starred{/owner}{/repo}', 'subscriptions_url': 'https://api.github.com/users/sanjaydub/subscriptions', 'organizations_url': 'https://api.github.com/users/sanjaydub/orgs', 'repos_url': 'https://api.github.com/users/sanjaydub/repos', 'events_url': 'https://api.github.com/users/sanjaydub/events{/privacy}', 'received_events_url': 'https://api.github.com/users/sanjaydub/received_events', 'type': 'User', 'site_admin': False}
+private: False
+pulls_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/pulls{/number}
+pushed_at: 2019-09-21T18:55:33Z
+releases_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/releases{/id}
+size: 1023
+ssh_url: git@github.com:sanjaydub/Allure_Maven_TestNG.git
+stargazers_count: 0
+stargazers_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/stargazers
+statuses_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/statuses/{sha}
+subscribers_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/subscribers
+subscription_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/subscription
+svn_url: https://github.com/sanjaydub/Allure_Maven_TestNG
+tags_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/tags
+teams_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/teams
+trees_url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG/git/trees{/sha}
+updated_at: 2019-09-21T19:06:26Z
+url: https://api.github.com/repos/sanjaydub/Allure_Maven_TestNG
+watchers: 0
+watchers_count: 0</msg>
+<status status="PASS" starttime="20191010 07:09:52.673" endtime="20191010 07:09:52.673"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${resDict}</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.673" level="INFO">Length is 3</msg>
+<status status="PASS" starttime="20191010 07:09:52.673" endtime="20191010 07:09:52.673"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${resDict}</arg>
+<arg>$..full_name</arg>
+</arguments>
+<assign>
+<var>${fullNames}</var>
+</assign>
+<msg timestamp="20191010 07:09:52.771" level="INFO">${fullNames} = ['sanjaydub/Allure_Maven_TestNG', 'sanjaydub/firstrepo', 'sanjaydub/robotframework-soapuilibrary']</msg>
+<status status="PASS" starttime="20191010 07:09:52.673" endtime="20191010 07:09:52.771"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${fullNames}</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.771" level="INFO">['sanjaydub/Allure_Maven_TestNG', 'sanjaydub/firstrepo', 'sanjaydub/robotframework-soapuilibrary']</msg>
+<status status="PASS" starttime="20191010 07:09:52.771" endtime="20191010 07:09:52.771"></status>
+</kw>
+<kw name="Verify JSON Node value" library="Utils">
+<arguments>
+<arg>${resDict}</arg>
+<arg>$..full_name</arg>
+<arg>0</arg>
+<arg>sanjaydub/firstrepo</arg>
+</arguments>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${jsonObj}</arg>
+<arg>${jsonPath}</arg>
+</arguments>
+<assign>
+<var>${actVals}</var>
+</assign>
+<msg timestamp="20191010 07:09:52.803" level="INFO">${actVals} = ['sanjaydub/Allure_Maven_TestNG', 'sanjaydub/firstrepo', 'sanjaydub/robotframework-soapuilibrary']</msg>
+<status status="PASS" starttime="20191010 07:09:52.771" endtime="20191010 07:09:52.803"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${actVals}[${index}]</arg>
+<arg>${expValue}</arg>
+</arguments>
+<msg timestamp="20191010 07:09:52.803" level="FAIL">sanjaydub/Allure_Maven_TestNG != sanjaydub/firstrepo</msg>
+<status status="FAIL" starttime="20191010 07:09:52.803" endtime="20191010 07:09:52.803"></status>
+</kw>
+<status status="FAIL" starttime="20191010 07:09:52.771" endtime="20191010 07:09:52.803"></status>
+</kw>
+<tags>
+<tag>REST</tag>
+</tags>
+<status status="FAIL" starttime="20191010 07:09:51.725" endtime="20191010 07:09:52.803" critical="yes">sanjaydub/Allure_Maven_TestNG != sanjaydub/firstrepo</status>
+</test>
+<status status="FAIL" starttime="20191010 07:09:51.121" endtime="20191010 07:09:52.803"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">REST</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="TestSuite1">TestSuite1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

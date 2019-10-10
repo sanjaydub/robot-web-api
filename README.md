@@ -17,3 +17,8 @@ Using python with group/tag -->  <i> python -m  robot  -i  REST  TestSuite1.robo
 ![alt text](https://raw.githubusercontent.com/sanjaydub/robot-web-api/master/inteliJRunConfigSettings.jpg)
 
 
+<b>Robot Framework - Results</b><br>
+Result.html - Test execution result summary with filters
+![alt text](https://raw.githubusercontent.com/sanjaydub/robot-web-api/master/RFW_Report.jpeg)<br><br>
+Log.html - Logs for every step
+![alt text](https://raw.githubusercontent.com/sanjaydub/robot-web-api/master/RFW_Log.jpeg)

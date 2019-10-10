@@ -42,6 +42,6 @@ Request Git hub via REST service
 
     Verify JSON Node value      ${resDict}     $..full_name     1   sanjaydub/firstrepo
 
-    Verify JSON Node value      ${resDict}     $..full_name     0   sanjaydub/firstrepo
+    Verify JSON Node value      ${resDict}     $..full_name     0   sanjaydub/Allure_Maven_TestNG
 
 

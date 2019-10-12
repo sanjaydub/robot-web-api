@@ -13,6 +13,9 @@ Using robot with group/tag-->  <i> robot   -i  group_name  TestSsuite1.robot</i>
 Using python -->  <i> python  -m  robot   TestSuite1.robot </i><br>
 Using python with group/tag -->  <i> python -m  robot  -i  REST  TestSuite1.robot </i><br>
 
+<B>Using Pipenv for Dpendencies management :</b><br>
+Command to run script in pipenv --> pipenv run python -m robot Suites\TestSuite1.robot
+
 <b>InteliJ Run config Setting</b>: If you want to run robot test script/suite from inteliJ<br>
 ![alt text](https://raw.githubusercontent.com/sanjaydub/robot-web-api/master/inteliJRunConfigSettings.jpg)
 
